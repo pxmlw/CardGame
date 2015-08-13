@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="keywords" content="Majestic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css'/>
+        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+        <script src="js/handlebars-v3.0.3.js" type="text/javascript"></script>
+        <script src="js/lobby.js" type="text/javascript"></script>
+        <script>
+        $(function(){  
+            function CheckSession() {
+                        $.get('validate').done(function(result){
+                            console.log(">>>>>>"+JSON.stringify(result));
+                            var x = JSON.parse(JSON.stringify(result));
+                           console.log(x);
+                            var m = JSON.parse(x);
+                            console.log("ddd>>>"+m["UserAccount"]);
+                            
+                            //console.log(m[0].UserAccount);
+            
+                        var session = m['UserAccount'];
+
+                        if (session === "null") {
+                            console.log("out");
+                            var list = document.getElementById("out");   // Get the <ul> element with id="myList"
+                            list.removeChild(list.childNodes[0]);
+                            alert("Please login first");
+                            location.href="login.html";
+                        }
+                        else{
+                            console.log("in");
+                            var list = document.getElementById("in");   // Get the <ul> element with id="myList"
+                           var list2 = document.getElementById("reg");
+                            list2.removeChild(list2.childNodes[0]);
+                            list.removeChild(list.childNodes[0]);
+                            }
+                            });
+                    }
+        setInterval(CheckSession(),500);    
+        });
+        </script>
+        
+        
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <script id="gameListTemplate" type="text/x-handlebars">
+           <div id="{{ gameId }}">
+            <h2 class="success">{{ gameId }} <button id="{{ gameId }}" class="btn btn-success" type="button" value="{{ gameId }}">JoinUs!</button></h2>
+           </div>
+        </script>
+
+
+        
+        
+        <title>Lobby</title>
+    </head>
+    <body>
+        
+        <div class="header" id="home">
+		<div class="container">
+			<div class="logo">
+				<a href="index.html"><img src="images/logo-2.png" alt=""></a>
+			</div>
+						<div class="navigation">
+			 <span class="menu"></span> 
+				<ul class="navig">
+					<li><a class="active" href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="rules.html">Rules</a></li>
+					<li><a href="contact.html">Contact</a></li>
+                                        <li id="in"><a href="login.html">Login</a></li>
+                                        <li id="out"><a href="logout.html">Logout</a></li>
+                                         <li id="reg"><a href="register.html">Register</a></li>
+                                        
+				</ul>
+			</div>
+				 <!-- script-for-menu -->
+		 <script>
+				$("span.menu").click(function(){
+					$(" ul.navig").slideToggle("slow" , function(){
+					});
+				});
+		 </script>
+		 <!-- script-for-menu -->
+		</div>
+	</div>	
+        
+        
+        <div class="banner" id="home">
+       <div class="container">
+			<div class="blog-top">
+				
+                                <div class="gallery-top heading">
+                                    <h1>Lobby</h1>
+                                </div>
+                                        <br>
+                                        <center>                        
+                                        <div>
+                                        <button style="" type="button" class="btn btn-primary" id="newgame" value="3">CreateNewGame</button>
+                                        <div id="gameId"></div>
+                                      </div>
+                                        </center>			
+                                        </br>                               
+                            <div class="clearfix"></div>
+                        </div>
+       </div>	
+</div>
+        
+        
+        
+        
+        
+<div class="footer">
+		<div class="container">
+			<div class="footer-top">
+				<div class="col-md-4 footer-left">
+					<p>Design by Team9</p>
+				</div>
+				<div class="col-md-4 footer-left">
+					<h3>Follow Us</h3>
+					<ul>
+						<li><a href="#"><span class="fb"> </span></a></li>
+						<li><a href="#"><span class="twit"> </span></a></li>
+						<li><a href="#"><span class="google"> </span></a></li>
+						<li><a href="#"><span class="pin"> </span></a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 footer-left">
+					<h3>Address</h3>
+					<p>NUS ISS, 
+					<span>25 Heng Mui Keng Terrace</span>
+					</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<script type="text/javascript">
+                                (function(){
+                                $().UItoTop({ easingType: 'easeOutQuart' });
+										
+									});
+                </script>
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	</div>        
+        
+        
+    </body>
+</html>

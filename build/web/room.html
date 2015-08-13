@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>GameRoom</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Majestic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+        <script src="js/handlebars-v3.0.3.js" type="text/javascript"></script>
+        <script src="js/jquery-2.1.4.js"></script>
+
+        <link href="css/style.css" rel='stylesheet' type='text/css' />
+        <link href="css/room.css" rel="stylesheet" type="text/css" />
+        <script src="js/room.js"></script>
+
+        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+        <script>
+            $(function () {
+                function CheckSession() {
+                    $.get('validate').done(function (result) {
+                        console.log(">>>>>>" + JSON.stringify(result));
+                        var x = JSON.parse(JSON.stringify(result));
+                        console.log(x);
+                        var m = JSON.parse(x);
+                        console.log("ddd>>>" + m["UserAccount"]);
+
+                        //console.log(m[0].UserAccount);
+
+                        var session = m['UserAccount'];
+
+                        if (session === "null") {
+                            console.log("out");
+                            var list = document.getElementById("out");   // Get the <ul> element with id="myList"
+                            list.removeChild(list.childNodes[0]);
+                            alert("Please login first");
+                            location.href = "login.html";
+                        }
+                        else {
+                            console.log("in");
+                            var list = document.getElementById("in");   // Get the <ul> element with id="myList"
+                            var list2 = document.getElementById("reg");
+                            list2.removeChild(list2.childNodes[0]);
+                            list.removeChild(list.childNodes[0]);
+                            document.getElementById("xxxs").textContent = "Welcome," + session;
+                            document.getElementById("name2").value = session;
+                        }
+                    });
+                }
+                setInterval(CheckSession(), 500);
+            });
+        </script>
+        <script id="resultTemplate" type="text/x-handlebars">
+            <table>
+
+            <tr>
+            <img class="resultdemo" src="{{ m0 }}">
+            <img class="resultdemo" src="{{ m1 }}">
+            <img class="resultdemo" src="{{ m2 }}">
+            </tr> 
+
+            </table>
+
+        </script>
+
+
+        <script language="javascript">
+            function chk() {
+                var chk_value = [];
+                $('input[name="choice"]:checked').each(function () {
+                    chk_value.push($(this).val());
+                });
+
+                console.log(chk_value.length);
+                if (chk_value.length < 3) {
+
+                    alert("Please select at least 3 cards");
+                }
+
+                else {
+                    document.getElementById("a").value = chk_value[0];
+                    document.getElementById("b").value = chk_value[1];
+                    document.getElementById("c").value = chk_value[2];
+                    console.log("checkbox emilinate?");
+                }
+            }
+        </script> 
+    </head>
+    <body>
+        <div class="header" id="home">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo-2.png" alt=""></a>
+                </div>
+                <div class="navigation">
+                    <span class="menu"></span> 
+                    <ul class="navig">
+                        <li><a class="active" href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li id="in"><a href="login.html">Login</a></li>
+                        <li id="out"><a href="logout.html">Logout</a></li>
+                        <li id="reg"><a href="register.html">Register</a></li>
+
+                    </ul>
+                </div>
+                <!-- script-for-menu -->
+                <script>
+                    $("span.menu").click(function () {
+                        $(" ul.navig").slideToggle("slow", function () {
+                        });
+                    });
+                </script>
+                <!-- script-for-menu -->
+            </div>
+        </div>
+
+
+
+
+        <div class="banner" id="home">
+            <div class="container">
+                <div class="blog-top">
+
+
+
+
+
+                    <div class="col-md-9 blog-left">
+                        <div class="gallery-top heading">
+                            <h1 id="chattitle">OUR GALLERY</h1>
+                        </div>
+                        <div class="gallery-bottom">
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p0" src="img/blank.gif">
+                                    <input id="chkbx0" type="checkbox" name="choice" value="0" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p1" src="img/blank.gif">
+                                    <input id="chkbx1" type="checkbox" name="choice" value="1" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p2" src="img/blank.gif">
+                                    <input id="chkbx2" type="checkbox" name="choice" value="2" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p3" src="img/blank.gif">
+                                    <input id="chkbx3" type="checkbox" name="choice" value="3" >
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p4" src="img/blank.gif">
+                                    <input id="chkbx4" type="checkbox" name="choice" value="4" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p5" src="img/blank.gif">
+                                    <input id="chkbx5" type="checkbox" name="choice" value="5">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p6" src="img/blank.gif">
+                                    <input id="chkbx6" type="checkbox" name="choice" value="6" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p7" src="img/blank.gif">
+                                    <input id="chkbx7" type="checkbox" name="choice" value="7" >
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p8" src="img/blank.gif">
+                                    <input id="chkbx8" type="checkbox" name="choice" value="8" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p9" src="img/blank.gif">
+                                    <input id="chkbx9" type="checkbox" name="choice" value="9" >
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p10" src="img/blank.gif">
+                                    <input id="chkbx10" type="checkbox" name="choice" value="10">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p11" src="img/blank.gif">
+                                    <input id="chkbx11" type="checkbox" name="choice" value="11">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p12" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p13" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p14" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p15" src="">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>   
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p16" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p17" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p18" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p19" src="">
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>   
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p20" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p21" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p22" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p23" src="">
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>   
+                            <div class="gallery-1">
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p24" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p25" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p26" src="">
+                                </div>
+                                <div class="col-md-3 gallery-left">
+                                    <img id="p27" src="">
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>   
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="col-md-3 blog-right">
+                        <div class="categories">
+
+                            <div class="b-btn">
+                                <a id="findResult">FindResult</a>
+                            </div>
+                            <div class="b-btn">
+                                <input type="hidden"  id="a" name="a" value="0">
+                                <input type="hidden"  id="b" name="b" value="1">
+                                <input type="hidden"  id="c" name="c" value="2">                                                            
+                                <a name="dochk" id="submit" onclick="chk()"  />Submit</a>
+                            </div>
+                            <p id="flag" style="color: red"></p>
+                        </div>
+                        <div class="categories">
+
+                            <div id="xxxs">AccountName: ${User}</div>
+
+                            <textarea class="form-control" id="messages2" cols="20" rows="10" readonly>
+                            </textarea>
+
+                            <input type="text" id="name2" class="form-control" placeholder="Your name" size="10" value="" readonly>
+                            <input type="text" id="msg2" class="form-control" placeholder="Your message" size="30">
+
+                            <div class="b-btn">
+                                <a id="sendBtn">Send</a>
+                            </div>
+
+                        </div>
+                        <table class="col-md-3 blog-right">
+                            <p id="resultdemo"></p> 
+                            <div class="clearfix"></div>
+                        </table>   
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>	
+        </div>
+
+
+
+
+
+        <div class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="col-md-4 footer-left">
+                        <p>Design by Team9</p>
+                    </div>
+                    <div class="col-md-4 footer-left">
+                        <h3>Follow Us</h3>
+                        <ul>
+                            <li><a href="#"><span class="fb"> </span></a></li>
+                            <li><a href="#"><span class="twit"> </span></a></li>
+                            <li><a href="#"><span class="google"> </span></a></li>
+                            <li><a href="#"><span class="pin"> </span></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 footer-left">
+                        <h3>Address</h3>
+                        <p>NUS ISS, 
+                            <span>25 Heng Mui Keng Terrace</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                (function () {
+                    $().UItoTop({easingType: 'easeOutQuart'});
+
+                });
+            </script>
+            <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+        </div>       
+
+    </body>
+</html>
